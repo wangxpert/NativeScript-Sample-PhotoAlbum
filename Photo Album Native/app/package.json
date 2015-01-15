@@ -1,6 +1,6 @@
 {
-    "name": "tns-samples-template-hello-world",
+    "name": "tns-samples-photo-album-native",
     "main": "app.js",
-    "version": "0.4.2",
-    "description": "Nativescript template-hello-world sample application"
+    "version": "0.5.0",
+    "description": "Nativescript Photo Album Application"
 }

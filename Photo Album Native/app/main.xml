@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Page loaded="onPageLoaded">
+    <GridPanel>                
+        <GridPanel.rowDefinitions>
+            <RowDefinition height="*" />
+            <RowDefinition height="auto" />
+        </GridPanel.rowDefinitions>  
+        <ListView items="{{ photoItems }}" itemLoading="listViewItemLoading" row="0">
+            <ListView.itemTemplate>                
+                <GridPanel>
+                    <Image/>
+                </GridPanel>               
+            </ListView.itemTemplate>
+        </ListView>
+        <Button text="{{ message }}" click="buttonClick" row="1"/>
+    </GridPanel>
+</Page>
