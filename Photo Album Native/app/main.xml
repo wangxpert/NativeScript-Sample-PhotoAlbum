@@ -5,10 +5,10 @@
             <RowDefinition height="*" />
             <RowDefinition height="auto" />
         </GridPanel.rowDefinitions>  
-        <ListView items="{{ photoItems }}" itemLoading="listViewItemLoading" row="0">
-            <ListView.itemTemplate>                
+        <ListView items="{{ photoItems }}" row="0">
+            <ListView.itemTemplate>
                 <GridPanel>
-                    <Image/>
+                    <Image source="{{ photoItemImage }}" row="0"/>
                 </GridPanel>               
             </ListView.itemTemplate>
         </ListView>

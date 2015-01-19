@@ -3,8 +3,6 @@
 var modelModule = require("./view-model");
 var model = new modelModule.PhotoAlbumModel();
 
-//var backendServices = require('./modules/everlive.all');
-
 //var buttonModule = require("ui/button");
 //var gridModule = require("ui/panels/grid-panel");
 //var listViewModule = require("ui/list-view");
@@ -17,22 +15,20 @@ function onPageLoaded(args) {
     page.bindingContext = model;
 }
 
-function listViewItemLoading(args) {
-    var image = args.view._children[0];
-    image.source = args.object.items.getItem(args.index);
-}
+// function listViewItemLoading(args) {
+//     var image = args.view._children[0];
+//     image.source = args.object.items.getItem(args.index);
+// }
 
 function buttonClick(args) {
     model.tapAction();
 }
 
 exports.buttonClick = buttonClick;
-exports.listViewItemLoading = listViewItemLoading;
+//exports.listViewItemLoading = listViewItemLoading;
 exports.onPageLoaded = onPageLoaded;
 
 // function createPage() {
-
-//     var everlive = new backendServices("tgfrG0zznuwAxaLc");
 
 //     var model = new modelModule.PhotoAlbumModel();
 

@@ -32,6 +32,9 @@ var ImageSource = (function () {
     ImageSource.prototype.saveToFile = function (path, format, quality) {
         return native.saveToFile(this.getNativeInstance(), path, format, quality);
     };
+    ImageSource.prototype.toBase64String = function (format, quality) {
+        return native.toBase64String(this.getNativeInstance(), format, quality);
+    };
     Object.defineProperty(ImageSource.prototype, "height", {
         get: function () {
             if (this.android) {

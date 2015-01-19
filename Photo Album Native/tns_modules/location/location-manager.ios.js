@@ -1,4 +1,5 @@
-var types = require("location/location-types");
+var enums = require("ui/enums");
+var locationModule = require("location");
 var LocationListenerClass = NSObject.extend({
     setupWithFunctions: function (onLocation, onError) {
         this["_owner"].onLocation = onLocation;
@@ -28,13 +29,12 @@ var LocationListenerClass = NSObject.extend({
 });
 var LocationManager = (function () {
     function LocationManager() {
-        this.isStarted = false;
-        this.desiredAccuracy = 300 /* ANY */;
-        this.updateDistance = -1;
+        this.desiredAccuracy = enums.Accuracy.any;
+        this.updateDistance = kCLDistanceFilterNone;
         this.iosLocationManager = new CLLocationManager();
     }
     LocationManager.locationFromCLLocation = function (clLocation) {
-        var location = new types.Location();
+        var location = new locationModule.Location();
         location.latitude = clLocation.coordinate.latitude;
         location.longitude = clLocation.coordinate.longitude;
         location.altitude = clLocation.altitude;
@@ -58,7 +58,7 @@ var LocationManager = (function () {
     };
     LocationManager.isEnabled = function () {
         if (CLLocationManager.locationServicesEnabled()) {
-            return true;
+            return (CLLocationManager.authorizationStatus() === CLAuthorizationStatus.kCLAuthorizationStatusAuthorizedWhenInUse || CLLocationManager.authorizationStatus() === CLAuthorizationStatus.kCLAuthorizationStatusAuthorizedAlways || CLLocationManager.authorizationStatus() === CLAuthorizationStatus.kCLAuthorizationStatusAuthorized);
         }
         return false;
     };
@@ -72,38 +72,30 @@ var LocationManager = (function () {
         return loc1.ios.distanceFromLocation(loc2.ios);
     };
     LocationManager.prototype.startLocationMonitoring = function (onLocation, onError, options) {
-        if (this.isStarted) {
-            if (onError) {
-                onError(new Error('location monitoring already started'));
+        if (!this.listener) {
+            if (options) {
+                if (options.desiredAccuracy) {
+                    this.desiredAccuracy = options.desiredAccuracy;
+                }
+                if (options.updateDistance) {
+                    this.updateDistance = options.updateDistance;
+                }
             }
-            return;
+            this.listener = LocationListenerClass.alloc();
+            this.listener["_owner"] = this;
+            this.listener["_options"] = options;
+            this.listener["_LocationManager"] = LocationManager;
+            this.listener.setupWithFunctions(onLocation, onError);
+            this.iosLocationManager.delegate = this.listener;
+            this.iosLocationManager.desiredAccuracy = this.desiredAccuracy;
+            this.iosLocationManager.distanceFilter = this.updateDistance;
+            this.iosLocationManager.startUpdatingLocation();
         }
-        if (options) {
-            if (options.desiredAccuracy) {
-                this.desiredAccuracy = options.desiredAccuracy;
-            }
-            if (options.updateDistance) {
-                this.updateDistance = options.updateDistance;
-            }
-        }
-        this.listener = LocationListenerClass.alloc();
-        this.listener["_owner"] = this;
-        this.listener["_options"] = options;
-        this.listener["_LocationManager"] = LocationManager;
-        this.listener.setupWithFunctions(onLocation, onError);
-        this.iosLocationManager.delegate = this.listener;
-        this.iosLocationManager.desiredAccuracy = this.desiredAccuracy;
-        this.iosLocationManager.distanceFilter = this.updateDistance;
-        this.iosLocationManager.startUpdatingLocation();
-        this.isStarted = true;
     };
     LocationManager.prototype.stopLocationMonitoring = function () {
-        if (this.isStarted) {
-            this.iosLocationManager.stopUpdatingLocation();
-            this.iosLocationManager.delegate = null;
-            this.listener = null;
-            this.isStarted = false;
-        }
+        this.iosLocationManager.stopUpdatingLocation();
+        this.iosLocationManager.delegate = null;
+        this.listener = null;
     };
     Object.defineProperty(LocationManager.prototype, "lastKnownLocation", {
         get: function () {
