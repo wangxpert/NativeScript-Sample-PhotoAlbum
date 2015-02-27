@@ -1,1 +1,12 @@
-s
+<Page loaded="onPageLoaded" xmlns="http://www.nativescript.org/tns.xsd" >
+    <GridLayout rows="*, auto">
+        <ListView items="{{ photoItems }}" row="0" >
+            <ListView.itemTemplate>                
+                <GridLayout>
+                    <Image source="{{ itemImage }}" row="0"/>
+                </GridLayout>               
+            </ListView.itemTemplate>
+        </ListView>
+        <Button text="{{ message }}" click="buttonClick" row="1"/>
+    </GridLayout>
+</Page>
