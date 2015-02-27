@@ -7,7 +7,7 @@ var __extends = this.__extends || function (d, b) {
 var view = require("ui/core/view");
 var dependencyObservable = require("ui/core/dependency-observable");
 var proxy = require("ui/core/proxy");
-exports.busyProperty = new dependencyObservable.Property("busy", "ActivityIndicator", new proxy.PropertyMetadata(false, dependencyObservable.PropertyMetadataOptions.AffectsMeasure));
+exports.busyProperty = new dependencyObservable.Property("busy", "ActivityIndicator", new proxy.PropertyMetadata(false, dependencyObservable.PropertyMetadataSettings.AffectsLayout));
 var ActivityIndicator = (function (_super) {
     __extends(ActivityIndicator, _super);
     function ActivityIndicator() {

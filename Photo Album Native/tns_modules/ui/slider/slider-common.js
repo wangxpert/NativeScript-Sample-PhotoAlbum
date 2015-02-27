@@ -7,9 +7,9 @@ var __extends = this.__extends || function (d, b) {
 var view = require("ui/core/view");
 var dependencyObservable = require("ui/core/dependency-observable");
 var proxy = require("ui/core/proxy");
-exports.valueProperty = new dependencyObservable.Property("value", "Slider", new proxy.PropertyMetadata(0, dependencyObservable.PropertyMetadataOptions.None));
-exports.minValueProperty = new dependencyObservable.Property("minValue", "Slider", new proxy.PropertyMetadata(0, dependencyObservable.PropertyMetadataOptions.None));
-exports.maxValueProperty = new dependencyObservable.Property("maxValue", "Slider", new proxy.PropertyMetadata(100, dependencyObservable.PropertyMetadataOptions.None));
+exports.valueProperty = new dependencyObservable.Property("value", "Slider", new proxy.PropertyMetadata(0));
+exports.minValueProperty = new dependencyObservable.Property("minValue", "Slider", new proxy.PropertyMetadata(0));
+exports.maxValueProperty = new dependencyObservable.Property("maxValue", "Slider", new proxy.PropertyMetadata(100));
 var Slider = (function (_super) {
     __extends(Slider, _super);
     function Slider() {

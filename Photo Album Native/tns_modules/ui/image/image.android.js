@@ -54,9 +54,6 @@ var Image = (function (_super) {
     Image.prototype._createUI = function () {
         this._android = new android.widget.ImageView(this._context);
     };
-    Image.prototype.measure = function (availableSize, options) {
-        return _super.prototype.measure.call(this, availableSize, true);
-    };
     return Image;
 })(imageCommon.Image);
 exports.Image = Image;

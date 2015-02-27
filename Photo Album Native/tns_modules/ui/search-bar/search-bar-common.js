@@ -12,7 +12,7 @@ var knownEvents;
     knownEvents.submit = "submit";
     knownEvents.clear = "clear";
 })(knownEvents = exports.knownEvents || (exports.knownEvents = {}));
-exports.textProperty = new dependencyObservable.Property("text", "SearchBar", new proxy.PropertyMetadata("", dependencyObservable.PropertyMetadataOptions.AffectsMeasure));
+exports.textProperty = new dependencyObservable.Property("text", "SearchBar", new proxy.PropertyMetadata("", dependencyObservable.PropertyMetadataSettings.AffectsLayout));
 var SearchBar = (function (_super) {
     __extends(SearchBar, _super);
     function SearchBar() {

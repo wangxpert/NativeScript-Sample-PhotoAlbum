@@ -41,9 +41,9 @@ function onItemTemplatePropertyChanged(data) {
     var listView = data.object;
     listView.refresh();
 }
-exports.itemsProperty = new dependencyObservable.Property(ITEMS, LISTVIEW, new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataOptions.AffectsMeasure, onItemsPropertyChanged));
-exports.itemTemplateProperty = new dependencyObservable.Property(ITEMTEMPLATE, LISTVIEW, new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataOptions.AffectsMeasure, onItemTemplatePropertyChanged));
-exports.isScrollingProperty = new dependencyObservable.Property(ISSCROLLING, LISTVIEW, new proxy.PropertyMetadata(false, dependencyObservable.PropertyMetadataOptions.None));
+exports.itemsProperty = new dependencyObservable.Property(ITEMS, LISTVIEW, new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.AffectsLayout, onItemsPropertyChanged));
+exports.itemTemplateProperty = new dependencyObservable.Property(ITEMTEMPLATE, LISTVIEW, new proxy.PropertyMetadata(undefined, dependencyObservable.PropertyMetadataSettings.AffectsLayout, onItemTemplatePropertyChanged));
+exports.isScrollingProperty = new dependencyObservable.Property(ISSCROLLING, LISTVIEW, new proxy.PropertyMetadata(false, dependencyObservable.PropertyMetadataSettings.None));
 var ListView = (function (_super) {
     __extends(ListView, _super);
     function ListView() {
@@ -86,11 +86,11 @@ var ListView = (function (_super) {
     ListView.prototype.refresh = function () {
     };
     ListView.prototype._getItemTemplateContent = function (index) {
-        var view;
+        var v;
         if (this.itemTemplate && this.items) {
-            view = builder.parse(this.itemTemplate, this._getDataItem(index));
+            v = builder.parse(this.itemTemplate, getExports(this));
         }
-        return view;
+        return v;
     };
     ListView.prototype._prepareItem = function (item, index) {
         if (item) {
@@ -108,3 +108,10 @@ var ListView = (function (_super) {
     return ListView;
 })(view.View);
 exports.ListView = ListView;
+function getExports(instance) {
+    var parent = instance.parent;
+    while (parent && parent.exports === undefined) {
+        parent = parent.parent;
+    }
+    return parent.exports;
+}

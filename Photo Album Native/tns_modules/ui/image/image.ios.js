@@ -29,7 +29,7 @@ function onSourcePropertyChanged(data) {
     var image = data.object;
     image.ios.image = data.newValue ? data.newValue.ios : null;
     if (isNaN(image.width) || isNaN(image.height)) {
-        image._invalidateMeasure();
+        image.requestLayout();
     }
 }
 imageCommon.stretchProperty.metadata.onSetNativeValue = onStretchPropertyChanged;
@@ -41,6 +41,7 @@ var Image = (function (_super) {
         this._ios = new UIImageView();
         this._ios.contentMode = UIViewContentMode.UIViewContentModeScaleAspectFit;
         this._ios.clipsToBounds = true;
+        _super.prototype._prepareNativeView.call(this, this._ios);
     }
     Object.defineProperty(Image.prototype, "ios", {
         get: function () {

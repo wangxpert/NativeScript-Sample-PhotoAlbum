@@ -7,8 +7,8 @@ var __extends = this.__extends || function (d, b) {
 var view = require("ui/core/view");
 var dependencyObservable = require("ui/core/dependency-observable");
 var proxy = require("ui/core/proxy");
-exports.valueProperty = new dependencyObservable.Property("value", "Progress", new proxy.PropertyMetadata(0, dependencyObservable.PropertyMetadataOptions.AffectsArrange));
-exports.maxValueProperty = new dependencyObservable.Property("maxValue", "Progress", new proxy.PropertyMetadata(100, dependencyObservable.PropertyMetadataOptions.AffectsArrange));
+exports.valueProperty = new dependencyObservable.Property("value", "Progress", new proxy.PropertyMetadata(0, dependencyObservable.PropertyMetadataSettings.AffectsLayout));
+exports.maxValueProperty = new dependencyObservable.Property("maxValue", "Progress", new proxy.PropertyMetadata(100, dependencyObservable.PropertyMetadataSettings.AffectsLayout));
 var Progress = (function (_super) {
     __extends(Progress, _super);
     function Progress() {
