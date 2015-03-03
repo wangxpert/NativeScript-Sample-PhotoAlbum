@@ -7,6 +7,6 @@
                 </GridLayout>               
             </ListView.itemTemplate>
         </ListView>
-        <Button text="{{ message }}" click="buttonClick" row="1"/>
+        <Button text="{{ message }}" tap="buttonTap" row="1"/>
     </GridLayout>
 </Page>

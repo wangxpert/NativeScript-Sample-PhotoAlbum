@@ -1,3 +1,5 @@
+var Everlive = require('./everlive.all.min');
+var everlive = new Everlive("tgfrG0zznuwAxaLc");
 var observable = require("data/observable");
 var observableArrayModule = require("data/observable-array");
 var imageSourceModule = require("image-source");
@@ -56,19 +58,48 @@ var PhotoAlbumModel = (function (_super) {
         this.set("message", "Add new images");
     }
 
+    var backendArray = new observableArrayModule.ObservableArray();
     Object.defineProperty(PhotoAlbumModel.prototype, "photoItems", {
         get: function () {
-            return array;
+            everlive.Files.get().then(function (data) {
+                    data.result.forEach(function (fileMetadata) {
+                        imageSourceModule.fromUrl(fileMetadata.Uri).then(function (result) {
+                            var item = {
+                                itemImage: result
+                            };
+                            backendArray.push(item);
+                        });
+                    });
+                },
+                function (error) {});
+
+            return backendArray;
         },
         enumerable: true,
         configurable: true
-    })
+    });
 
     PhotoAlbumModel.prototype.tapAction = function () {
         array.push(item7);
         array.push(item8);
-        
-        this.set("message", "Images added. Total images:" + array.length);
+
+        this.set("message", "Images added. Total images: " + array.length);
+
+        var that = this;
+
+        for (i = 0; i < array.length; i++) {
+            var file = {
+                "Filename": Math.random().toString(36).substring(2, 15) + ".jpg",
+                "ContentType": "image/jpeg",
+                "base64": array.getItem(i).itemImage.toBase64String("JPEG", 100)
+            };
+
+            everlive.Files.create(file,
+                function (data) {
+                    that.set("message", "File " + file.Filename + "added.")
+                },
+                function (error) {});
+        }
     };
 
     return PhotoAlbumModel;

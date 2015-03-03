@@ -6,9 +6,9 @@ function onPageLoaded(args) {
     page.bindingContext = model;
 }
 
-function buttonClick(args) {
+function buttonTap(args) {
     model.tapAction();
 }
 
 exports.onPageLoaded = onPageLoaded;
-exports.buttonClick = buttonClick;
+exports.buttonTap = buttonTap;
