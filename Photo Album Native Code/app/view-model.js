@@ -1,12 +1,11 @@
 var observable = require("data/observable");
-var observableArrayModule = require("data/observable-array");
 var imageSourceModule = require("image-source");
 var fileSystemModule = require("file-system");
+var observableArrayModule = require("data/observable-array");
+var enums = require("ui/enums");
 
 var Everlive = require('./everlive.all.min');
 var everlive = new Everlive("YOUR API KEY");
-
-var enums = require("ui/enums");
 
 var array = new observableArrayModule.ObservableArray();
 var directory = "/res/";
