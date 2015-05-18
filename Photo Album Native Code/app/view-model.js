@@ -47,7 +47,19 @@ var backendArray = new observableArrayModule.ObservableArray();
 
 Object.defineProperty(photoAlbumModel, "photoItems", {
     get: function () {
-        return array;
+        everlive.Files.get().then(function (data) {
+                data.result.forEach(function (fileMetadata) {
+                    imageSourceModule.fromUrl(fileMetadata.Uri).then(function (result) {
+                        var item = {
+                            itemImage: result
+                        };
+                        backendArray.push(item);
+                    });
+                });
+            },
+            function (error) {});
+
+        return backendArray;
     },
     enumerable: true,
     configurable: true
