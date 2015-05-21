@@ -58,7 +58,9 @@ Object.defineProperty(photoAlbumModel, "photoItems", {
                 });
             },
             function (error) {});
-
+		
+		// if you want to see the images right away without referring the Telerik Backend Services, use array instead of backendArray
+		//return array;	
         return backendArray;
     },
     enumerable: true,
