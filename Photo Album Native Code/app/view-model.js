@@ -4,11 +4,13 @@ var fileSystemModule = require("file-system");
 var observableArrayModule = require("data/observable-array");
 var enums = require("ui/enums");
 
+var localImagesArray = new observableArrayModule.ObservableArray();
+var directory = "/res/";
+
+var cameraModule = require("camera");
+
 var Everlive = require('./everlive.all.min');
 var everlive = new Everlive("YOUR API KEY");
-
-var array = new observableArrayModule.ObservableArray();
-var directory = "/res/";
 
 function imageFromSource(imageName) {
     return imageSourceModule.fromFile(fileSystemModule.path.join(__dirname, directory + imageName));
@@ -31,7 +33,7 @@ var item5 = {
 var item6 = {
     itemImage: imageFromSource("06.jpg")
 };
-array.push([item1, item2, item3, item4, item5, item6]);
+localImagesArray.push([item1, item2, item3, item4, item5, item6]);
 var item7 = {
     itemImage: imageFromSource("07.jpg")
 };
@@ -41,7 +43,7 @@ var item8 = {
 
 var photoAlbumModel = new observable.Observable();
 
-photoAlbumModel.set("message", "Add new images");
+photoAlbumModel.set("message", "Add new photos");
 
 var backendArray = new observableArrayModule.ObservableArray();
 
@@ -58,9 +60,9 @@ Object.defineProperty(photoAlbumModel, "photoItems", {
                 });
             },
             function (error) {});
-		
-		// if you want to see the images right away without referring the Telerik Backend Services, use array instead of backendArray
-		//return array;	
+
+        // if you want to see the images right away without referring the Telerik Backend Services, use localImagesArray instead of backendArray
+        //return localImagesArray;
         return backendArray;
     },
     enumerable: true,
@@ -68,21 +70,28 @@ Object.defineProperty(photoAlbumModel, "photoItems", {
 });
 
 photoAlbumModel.tapAction = function () {
-    array.push([item7, item8]);
+    //localImagesArray.push([item7, item8]);
 
-    photoAlbumModel.set("message", "Images added. Total images: " + array.length);
+    cameraModule.takePicture({
+        width: 300,
+        height: 300,
+        keepAspectRatio: true
+    }).then(function (picture) {
+        var item = {
+            itemImage: picture
+        };
+        backendArray.push(item);
 
-    for (i = 0; i < array.length; i++) {
         var file = {
             "Filename": Math.random().toString(36).substring(2, 15) + ".jpg",
             "ContentType": "image/jpeg",
-            "base64": array.getItem(i).itemImage.toBase64String(enums.ImageFormat.jpeg, 100)
+            "base64": picture.toBase64String(enums.ImageFormat.jpeg, 100)
         };
 
         everlive.Files.create(file,
             function (data) {},
             function (error) {});
-    }
+    });
 };
 
 exports.photoAlbumModel = photoAlbumModel;
