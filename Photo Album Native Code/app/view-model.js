@@ -10,7 +10,7 @@ var directory = "/res/";
 var cameraModule = require("camera");
 
 var Everlive = require('./everlive.all.min');
-var everlive = new Everlive("6UG1QkJYwgzNWgpN");
+var everlive = new Everlive("YOUR API KEY");
 
 function imageFromSource(imageName) {
     return imageSourceModule.fromFile(fileSystemModule.path.join(__dirname, directory + imageName));
