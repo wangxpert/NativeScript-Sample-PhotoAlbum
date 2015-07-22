@@ -1,0 +1,10 @@
+*/bin
+*/obj
+*.user-settings.xml
+
+# NativeScript files
+.tnsproject
+
+# PhotoAlbum files
+Photo\ Album\ Native\ Code/PhotoAlbumNative.png
+Photo\ Album\ Native\ Code/README.md
