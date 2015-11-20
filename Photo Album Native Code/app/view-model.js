@@ -1,3 +1,7 @@
+var cameraModule = require("camera");
+var Everlive = require('./everlive.all.min');
+var everlive = new Everlive("AnSL6wFUpZIcaaHK");
+
 var observable = require("data/observable");
 var imageSourceModule = require("image-source");
 var fileSystemModule = require("file-system");
@@ -6,11 +10,6 @@ var enums = require("ui/enums");
 
 var localImagesArray = new observableArrayModule.ObservableArray();
 var directory = "/res/";
-
-var cameraModule = require("camera");
-
-var Everlive = require('./everlive.all.min');
-var everlive = new Everlive("YOUR API KEY");
 
 function imageFromSource(imageName) {
     return imageSourceModule.fromFile(fileSystemModule.path.join(__dirname, directory + imageName));
@@ -61,8 +60,6 @@ Object.defineProperty(photoAlbumModel, "photoItems", {
             },
             function (error) {});
 
-        // if you want to see the images right away without referring the Telerik Backend Services, use localImagesArray instead of backendArray
-        //return localImagesArray;
         return backendArray;
     },
     enumerable: true,

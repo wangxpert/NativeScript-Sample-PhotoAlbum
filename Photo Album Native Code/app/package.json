@@ -3,7 +3,7 @@
     "main": "app.js",
     "version": "1.4.0",
     "author": "Telerik <support@telerik.com>",
-    "description": "Nativescript blank template",
+    "description": "Nativescript blank project template",
     "license": "BSD",
     "keywords": [
         "telerik",
@@ -15,6 +15,6 @@
         "template"
     ],
     "repository": {
-        "url": "https://github.com/NativeScript/NativeScript/commit/2dd2bc006d8c9dee3dc90f7fbccdeb09b4e8c0da"
+        "url": "https://github.com/NativeScript/NativeScript/commit/2647ee894483aed4f8d1e2dfdb1784f66d70f4f9"
     }
 }
