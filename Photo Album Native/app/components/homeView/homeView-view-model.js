@@ -1,15 +1,16 @@
-var cameraModule = require("camera");
-var Everlive = require('./everlive.all.min');
-var everlive = new Everlive("AnSL6wFUpZIcaaHK");
-
 var observable = require("data/observable");
 var imageSourceModule = require("image-source");
 var fileSystemModule = require("file-system");
 var observableArrayModule = require("data/observable-array");
 var enums = require("ui/enums");
 
+var cameraModule = require("camera");
+
+var Everlive = require('../../everlive.all.min');
+var everlive = new Everlive("ocvjnrxqofn8wqot");
+
 var localImagesArray = new observableArrayModule.ObservableArray();
-var directory = "/res/";
+var directory = "/../../res/";
 
 function imageFromSource(imageName) {
     return imageSourceModule.fromFile(fileSystemModule.path.join(__dirname, directory + imageName));
