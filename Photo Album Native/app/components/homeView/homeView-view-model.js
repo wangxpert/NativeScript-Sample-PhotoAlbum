@@ -7,7 +7,7 @@ var enums = require("ui/enums");
 var cameraModule = require("camera");
 
 var Everlive = require('../../everlive.all.min');
-var everlive = new Everlive("ocvjnrxqofn8wqot");
+var everlive = new Everlive("YOUR API KEY");
 
 var localImagesArray = new observableArrayModule.ObservableArray();
 var directory = "/../../res/";
