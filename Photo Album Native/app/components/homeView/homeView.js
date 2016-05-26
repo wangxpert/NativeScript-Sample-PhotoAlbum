@@ -1,4 +1,4 @@
-var modelModule = require("./view-model");
+var modelModule = require("./homeView-service");
 var model = modelModule.photoAlbumModel;
 
 function onPageLoaded(args) {
