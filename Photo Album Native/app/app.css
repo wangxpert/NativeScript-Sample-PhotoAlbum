@@ -10,6 +10,9 @@ page {
 
 button {
     horizontal-align: stretch;
+    background-color: gray;
+    font-size: 20;
+    color: #3BB9FF;
 }
 
 image,
@@ -101,7 +104,6 @@ switch {
     width: 36;
     text-align: center;
 }
-
 
 /* START_CUSTOM_CODE_nativeScriptApp */
 
