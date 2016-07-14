@@ -1,6 +1,6 @@
 Photo Album Sample App for NativeScript
 =============================
-<a href="https://platform.telerik.com/#appbuilder/clone/https%3A%2F%2Fgithub.com%2FIcenium%2Fnativescript-sample-PhotoAlbum" target="_blank"><img src="http://docs.telerik.com/platform/appbuilder/sample-apps/images/try-in-appbuilder.png" alt="Try in AppBuilder" title="Try in AppBuilder" /></a>
+<a href="https://platform.telerik.com/#appbuilder/clone/https%3A%2F%2Fgithub.com%2FIcenium%2Fnativescript-sample-PhotoAlbum" target="_blank"><img src="http://docs.telerik.com/platform/samples/images/try-in-appbuilder.png" alt="Try in AppBuilder" title="Try in AppBuilder" /></a>
 
 This repository contains the complete Photo Album Native sample app built on top of the online Photo Album Native Getting Started tutorial for the Native Script framework. The Photo Album Native app is a sample native mobile app showcasing the usage of the [NativeScript framework](http://github.com/nativescript/nativescript) and the integration of the Telerik Platform services into this app. To download the source code, just click on the "Download ZIP" button.
 
