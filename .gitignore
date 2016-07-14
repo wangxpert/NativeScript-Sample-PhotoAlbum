@@ -8,3 +8,6 @@
 # PhotoAlbum files
 Photo\ Album\ Native\ Code/PhotoAlbumNative.png
 Photo\ Album\ Native\ Code/README.md
+.ab
+*.apk
+*.ipa
