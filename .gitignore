@@ -11,3 +11,5 @@ Photo\ Album\ Native\ Code/README.md
 .ab
 *.apk
 *.ipa
+node_modules
+**/*.abreferences.d.ts
